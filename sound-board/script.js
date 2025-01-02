@@ -7,19 +7,24 @@ sounds.forEach(sound => {
     btn.innerText = sound
 
     btn.addEventListener('click', () => {
-        stopSongs()
-
-        document.getElementById(sound).play()
+    soundPlayer.stop();
+    soundPlayer.play(sound);
     })
 
     document.getElementById('buttons').appendChild(btn)
 })
 
-function stopSongs() {
-    sounds.forEach(sound => {
-        const song = document.getElementById(sound)
+const soundPlayer = {
+  stop() {
+    sounds.forEach((sound) => {
+      const song = document.getElementById(sound);
 
-        song.pause()
-        song.currentTime = 0;
-    })
-}
+      song.pause();
+      song.currentTime = 0;
+    });
+  },
+
+  play(sound) {
+    document.getElementById(sound).play();
+  },
+};
